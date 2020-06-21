@@ -16,7 +16,7 @@ docker-compose up
 ![docker Laravel](https://cdn.learnku.com/uploads/images/202006/21/11945/FKdBmBMMbS.png!large)
 
 
-如果不需要创建新的Larave项目，只想要一个能跑起来的环境，你只需要更改根目录下```common.env```中的```PROJECT_CREATE=false```，然后把你的项目拷贝`src`目录中即可。如果你想尽快试试，地址在这里：[github](https://aa)、[gitee](aaa)
+如果不需要创建新的Larave项目，只想要一个能跑起来的环境，你只需要更改根目录下```common.env```中的```PROJECT_CREATE=false```，然后把你的项目拷贝`src`目录中即可。如果你想尽快试试，地址在这里：[github](https://github.com/lqxun/docker-laravel)
 
 ### 启动方式
 ```git
