@@ -7,21 +7,24 @@
 // 构建并启动环境，启动后可通过http://${NGINX_HOST}:8888访问,NGINX_HOST在nginx下.env文件中定义
 docker-compose up 
 ```
-效果如下
+效果如下:
+访问：`http://${NGINX_HOST}:8888`访问laravel首页
+*注：记得添加`host`
 
 ![docker laravel](https://cdn.learnku.com/uploads/images/202006/21/11945/94RAmtcHt1.png!large)
 
-或者
+或者访问：`http://127.0.0.1:8888/phpinfo.php`查看`php`信息
 
 ![docker Laravel](https://cdn.learnku.com/uploads/images/202006/21/11945/FKdBmBMMbS.png!large)
 
-
-如果不需要创建新的Larave项目，只想要一个能跑起来的环境，你只需要更改根目录下```common.env```中的```PROJECT_CREATE=false```，然后把你的项目拷贝`src`目录中即可。如果你想尽快试试，地址在这里：[github](https://github.com/lqxun/docker-laravel)
+如果不需要创建新的Larave项目，只想要一个能跑起来的环境，你只需要更改根目录下```common.env```中的```PROJECT_CREATE=false```，然后把你的项目拷贝`src`目录中即可。如果你想尽快试试，地址在这里：[github](https://github.com/lqxun/docker-laravel)、[gitee](https://gitee.com/orol/docker-laravel)
 
 ### 启动方式
 ```git
-// 访问http://127.0.0.1:8888
 git clone git@github.com:lqxun/docker-laravel.git
+或者
+git@gitee.com:orol/docker-laravel.git
+
 cd docker-laravel
 docker-compose up
 ```
@@ -65,7 +68,7 @@ NGINX_HOST=test.doc
 > `php`的配置文件可以`volume`挂载进去，也可以在`Dockerfile`中`COPY`进去，但是有个问题：如果挂载进去，本地的配置会覆盖容器中的配置，可能会删除一些默认配置，好处是，不需要重新构建镜像，只需要重启镜像即可。如果`COPY`进去，不会破坏容器默认的配置，但是每次都需要重新构建镜像，看大家需要自行选择吧。本项目是`COPY`进去的。挂载的代码也已写好，只需打开`docker-compose.yml`中的注视，把`Dockerfile`中`COPY`注视掉即可。
 
 ##### 4、Mysql配置
-`mysql`的`my.cnf`是挂载到容器中的，,更改配置只需要重启容器即可,l连接端口`33060`，密码在`mysql`文件夹下的`.env`中配置。如果出现一下问题
+`mysql`的`my.cnf`是挂载到容器中的，,更改配置只需要重启容器即可,连接端口`33060`，密码在`mysql`文件夹下的`.env`中配置。如果出现一下问题
 
 ![docker Laravel](https://cdn.learnku.com/uploads/images/202006/21/11945/wSYiyfugR0.png!large)
 
