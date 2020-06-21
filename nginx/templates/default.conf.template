@@ -1,0 +1,18 @@
+server {
+  listen ${NGINX_PORT};
+  root /usr/share/nginx/html;
+  index index.php index.html;
+
+  location / {
+      try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  location ~ .*\.php(\/.*)*$ {
+    fastcgi_pass   laravel_php:9000;
+    root /var/www/html;
+    fastcgi_index  index.php;
+    include        fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    fastcgi_param PATH_INFO  $fastcgi_script_name;
+  }
+}

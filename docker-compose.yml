@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  php:
+    build:
+      context: php
+    container_name: laravel_php
+    env_file:
+      - common.env
+      - php/.env
+    volumes:
+      # 挂载php配置文件
+      #- ./php/conf.d:/usr/local/etc/php/conf.d
+      #- ./php/fpm-conf.d:/usr/local/etc/php-fpm.d
+      - ./src:/var/www/html
+    ports:
+      - 9000:9000
+    expose:
+      - 9000
+    networks:
+      - laravel
+
+  nginx:
+    image: nginx:1.19.0-alpine
+    container_name: laravel_nginx
+    env_file:
+      - common.env
+      - nginx/.env
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./src:/usr/share/nginx/html
+    depends_on:
+      - php
+    ports:
+      - 8888:80
+    expose:
+      - 8888
+    networks:
+      - laravel
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql
+    ports:
+      - 33060:3306
+    expose:
+      - 33060
+    env_file:
+      - mysql/.env
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
