@@ -21,7 +21,8 @@ docker-compose up
 ### 启动方式
 ```git
 // 访问http://127.0.0.1:8888
-git clone xxxx
+git clone git@github.com:lqxun/docker-laravel.git
+cd docker-laravel
 docker-compose up
 ```
 
